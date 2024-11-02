@@ -4,7 +4,9 @@ const RightSideBar = ({user, transactions, banks} : RightSideBarProps) => {
   return (
     <aside className="right-sidebar">
       <section className="flex flex-col pb-8">
-        RIGHT SIDEBAR
+        <div className="profile-banner">
+          <div></div>
+        </div>
       </section>
     </aside>
   )
