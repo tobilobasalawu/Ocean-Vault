@@ -44,7 +44,7 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
           alt="butterfly" 
           width={342} 
           height={184} 
-          className="absolute h-[184px] w-[342px] top-1"/>
+          className="absolute h-[184px] w-[350px] top-1"/>
 
       </Link>
     </div>
