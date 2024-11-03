@@ -1,6 +1,6 @@
 import React from "react";
 
-const PaymentTransfer = () => {
+const Transfer = () => {
   return (
     <section>
       <h1>Payment Transfer</h1>
@@ -8,4 +8,4 @@ const PaymentTransfer = () => {
   )
 }
 
-export default PaymentTransfer;
+export default Transfer;
