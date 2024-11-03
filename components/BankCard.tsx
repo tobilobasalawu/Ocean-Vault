@@ -5,10 +5,9 @@ import Image from "next/image";
 
 const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => {
   return (
-    <div className="flex flex-col">
-      <Link href="/" className="flex">
-        {/* Left side of the card */}
-        <div className="bank-card-left rounded-l-2xl bg-[#00178D] p-4 w-3/4">
+    <div className="flex flex-col w-full max-w-[500px]">
+      <Link href="/" className="flex relative h-48 w-full">
+        <div className="bank-card-left rounded-l-2xl bg-chase-gradient p-6 w-full shadow-lg">
           <div>
             <h1 className="text-16 font-semibold text-white">
               {account.name || userName}
@@ -36,10 +35,9 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
           </article>
         </div>
 
-        {/* Right side of the card */}
-        <div className="bank-card-right rounded-r-2xl bg-[#00178D] p-4 w-1/4 flex flex-col justify-end items-center">
-          <Image src="/icons/Paypass.svg" alt="paypass" width={20} height={24} className="mb-5"/>
-          <Image src="/icons/mastercard.svg" alt="mastercard" width={45} height={32} className="ml-7"/>
+        <div className="bank-card_icon">
+          <Image src="/icons/Paypass.svg" alt="paypass" width={20} height={24} className="ml-14"/>
+          <Image src="/icons/mastercard.svg" alt="mastercard" width={45} height={32} className="ml-14"/>
         </div>
       </Link>
     </div>
