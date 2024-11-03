@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { formatAmount } from "@/lib/utils";
 
 const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => {
   return (
@@ -10,6 +11,9 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
             <h1 className="text-16 font-semibold text-white">
               {account.name || userName}
             </h1>
+            <p className="font-ibm-plex-sans text-12 font-black text-white">
+              {formatAmount(account.currentBalance)}
+            </p>
           </div>
         </div>
       </Link>
