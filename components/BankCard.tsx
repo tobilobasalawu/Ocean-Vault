@@ -33,6 +33,8 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
               </p>
             </article>
 
+            <div className="bank-card_icon">
+            </div>
         </div>
       </Link>
     </div>
