@@ -24,7 +24,7 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
                 {userName}
               </h1>
               <h2 className="text-12 font-semibold text-white">
-                ** / **
+                &#9679;&#9679; / &#9679;&#9679; 
               </h2>
             </div>
             <p className="text-14 font-semibold text-white tracking-[1.1px]">
@@ -38,8 +38,8 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
 
         {/* Right side of the card */}
         <div className="bank-card-right rounded-r-2xl bg-[#00178D] p-4 w-1/4 flex flex-col justify-end items-center">
-          <Image src="/icons/Paypass.svg" alt="paypass" width={20} height={24} />
-          <Image src="/icons/mastercard.svg" alt="mastercard" width={45} height={32}/>
+          <Image src="/icons/Paypass.svg" alt="paypass" width={20} height={24} className="mb-5"/>
+          <Image src="/icons/mastercard.svg" alt="mastercard" width={45} height={32} className="ml-7"/>
         </div>
       </Link>
     </div>
