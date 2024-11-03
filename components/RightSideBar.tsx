@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import BankCard from "./BankCard";
 
 const RightSideBar = ({user, transactions, banks} : RightSideBarProps) => {
   return (
@@ -31,9 +32,12 @@ const RightSideBar = ({user, transactions, banks} : RightSideBarProps) => {
               />
             </div>
             {banks[1] && (
-              <div className="absolute right-0 top-8 z-0 w-[90%]">
-                BANK CARD 2
-              </div>
+              <BankCard 
+              key = {banks[1].$id}
+              account = {banks[1]}
+              userName = {`${user?.firstName} ${user?.lastName}`}
+              showBalance = {false}
+            />
             )}
           </div>
          )} 
