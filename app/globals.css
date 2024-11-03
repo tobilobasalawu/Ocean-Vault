@@ -222,14 +222,14 @@
 
   /* Bank Card */
   .bg-chase-gradient {
-    background: linear-gradient(135deg, #0b2e82 0%, #051c52 100%);
+    background: #00178D;
   }
   
   .bank-card {
-    @apply relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-chase-gradient shadow-creditCard backdrop-blur-[6px];
+    @apply relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-chase-gradient shadow-creditCard ;
   }
   .bank-card_content {
-    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-bank-gradient px-5 pb-4 pt-5;
+    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-[#00178D] px-5 pb-4 pt-5;
   }
 
   .bank-card_icon {
