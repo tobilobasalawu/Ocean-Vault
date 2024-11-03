@@ -8,7 +8,7 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
     <div className="flex flex-col">
       <Link href="/" className="flex">
         {/* Left side of the card */}
-        <div className="bank-card-left rounded-l-2xl bg-blue-600 p-4 w-3/4">
+        <div className="bank-card-left rounded-l-2xl bg-[#00178D] p-4 w-3/4">
           <div>
             <h1 className="text-16 font-semibold text-white">
               {account.name || userName}
@@ -28,7 +28,7 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
               </h2>
             </div>
             <p className="text-14 font-semibold text-white tracking-[1.1px]">
-              **** **** **** ****
+              &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679;
               <span className="text-16">
                 {account.mask}
               </span>
@@ -37,7 +37,7 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
         </div>
 
         {/* Right side of the card */}
-        <div className="bank-card-right rounded-r-2xl bg-blue-500 p-4 w-1/4 flex flex-col justify-end items-center">
+        <div className="bank-card-right rounded-r-2xl bg-[#00178D] p-4 w-1/4 flex flex-col justify-end items-center">
           <Image src="/icons/Paypass.svg" alt="paypass" width={20} height={24} />
           <Image src="/icons/mastercard.svg" alt="mastercard" width={45} height={32}/>
         </div>
