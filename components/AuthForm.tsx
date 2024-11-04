@@ -26,9 +26,12 @@ const AuthForm = ({type}: {type: string}) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const formSchema = authFormSchema(type);
+
+
   // 1. Define your form.
-  const form = useForm<z.infer<typeof authFormSchema>>({
-      resolver: zodResolver(authFormSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+      resolver: zodResolver(formSchema),
       defaultValues: {
         email: "",
         password: "",
@@ -36,7 +39,7 @@ const AuthForm = ({type}: {type: string}) => {
     })
    
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof authFormSchema>) {
+    function onSubmit(values: z.infer<typeof formSchema>) {
       setIsLoading(true);
       // Do something with the form values.
       // ✅ This will be type-safe and validated.
@@ -82,20 +85,23 @@ const AuthForm = ({type}: {type: string}) => {
 
                 {type === 'sign-up' && (
                   <>
-                  <CustomInput 
-                    control = {form.control}
-                    name = "firstName"
-                    label = "First Name"
-                    placeholder = "Enter your first name"
-                    type = "text"
-                  />
-                  <CustomInput 
-                    control = {form.control}
-                    name = "firstName"
-                    label = "First Name"
-                    placeholder = "Enter your first name"
-                    type = "text"
-                  />
+                  <div className="flex gap-4">
+                    <CustomInput 
+                      control = {form.control}
+                      name = "firstName"
+                      label = "First Name"
+                      placeholder = "Example: John"
+                      type = "text"
+                    />
+                    <CustomInput 
+                      control = {form.control}
+                      name = "lastName"
+                      label = "Last Name"
+                      placeholder = "Example: Doe"
+                      type = "text"
+                    />
+                  </div>
+
                   <CustomInput 
                     control = {form.control}
                     name = "address"
