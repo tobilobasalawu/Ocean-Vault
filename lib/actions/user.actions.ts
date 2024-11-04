@@ -8,9 +8,9 @@ export const signIn = async () => {
   }
 }
 
-export const signUp = async () => {
+export const signUp = async (userData: SignUpData) => {
   try {
-    //Mutation / Database / Make fetch
+    //Create user in Appwrite
   } catch (error) {
     console.log('Error', error)
   }
