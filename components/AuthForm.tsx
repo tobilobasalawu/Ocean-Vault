@@ -21,8 +21,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const AuthForm = ({type}: {type: string}) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,13 +41,36 @@ const AuthForm = ({type}: {type: string}) => {
     })
    
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
       setIsLoading(true);
       // Do something with the form values.
       // ✅ This will be type-safe and validated.
-      console.log(values)
-      setIsLoading(false);
-    }
+
+      try{
+        // Sign up with Appwrite & create plaid token 
+
+        if (type === 'sign-up'){
+          // Create user in Appwrite
+          // const newUser = await signUp(data);
+
+          //setUser(newUser);
+        } 
+
+        if (type === 'sign-in'){
+          //  const response = await signIn({
+          //    email: data.email,
+          //    password: data.password,
+          //  });
+
+          //  if (response) router.push('/');
+        }
+
+        } catch (error) { 
+          console.log(error)
+        } finally {
+          setIsLoading(false);
+        }
+      }
 
   return (
     <section className = "auth-form">
@@ -109,6 +134,7 @@ const AuthForm = ({type}: {type: string}) => {
                     placeholder = "Example: 123 Main St"
                     type = "text"
                   />
+
                   <CustomInput 
                     control = {form.control}
                     name = "city"
@@ -116,13 +142,24 @@ const AuthForm = ({type}: {type: string}) => {
                     placeholder = "Example: London"
                     type = "text"
                   />
-                  <CustomInput 
-                    control = {form.control}
-                    name = "postalCode"
-                    label = "Postal Code"
-                    placeholder = "Example: AB1 457"
-                    type = "text"
-                  />
+
+                  <div className="flex gap-4">
+                    <CustomInput 
+                      control = {form.control}
+                      name = "state"
+                      label = "Region (county)"
+                      placeholder = "Example: West Midlands"
+                      type = "text"
+                    />
+                    <CustomInput 
+                      control = {form.control}
+                      name = "postalCode"
+                      label = "Postal Code"
+                      placeholder = "Example: AB1 457"
+                      type = "text"
+                    />
+                  </div>
+
                   <CustomInput 
                     control = {form.control}
                     name = "dateOfBirth"
