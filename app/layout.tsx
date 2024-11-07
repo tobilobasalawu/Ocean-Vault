@@ -11,7 +11,7 @@ const ibmPlexSerif = IBM_Plex_Serif({
 
 export const metadata: Metadata = {
   title: "Ocean Vault",
-  description: "Ocean Vault is your modern banking platform",
+  description: "Ocean Vault - your modern banking platform",
   icons: {
     icon: '/icons/logo.svg'
   }
