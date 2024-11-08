@@ -1,9 +1,8 @@
 'use client'
-
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
+
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,11 +21,13 @@ import { Input } from "@/components/ui/input"
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { signUp, signIn, getLoggedInUser } from "@/lib/actions/user.actions";
 
 const AuthForm = ({type}: {type: string}) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  //const loggedInUser = await getLoggedInUser();
 
   const formSchema = authFormSchema(type);
 
@@ -56,10 +57,10 @@ const AuthForm = ({type}: {type: string}) => {
         } 
 
         if (type === 'sign-in'){
-            const response = await signIn({
-              email: data.email,
-              password: data.password,
-            });
+//            const response = await signIn({
+//              email: data.email,
+//              password: data.password,
+//            });
 
           //  if (response) router.push('/');
         }
@@ -84,10 +85,11 @@ const AuthForm = ({type}: {type: string}) => {
             <div className = "flex flex-col gap-1 md:gap-3">
               <h1 className = "text-24 lg:text-26 font-semibold text-gray-900">
                 {user
-                ? 'Link Account'
-                : type === 'sign-in'
-                ? 'Sign In'
-                : 'Sign Up'}
+                  ? 'Link Account'
+                  : type === 'sign-in'
+                    ? 'Sign In'
+                    : 'Sign Up'
+                }
 
                   <p className = "text-16 font-normal text-gra">
                     {user
@@ -145,7 +147,7 @@ const AuthForm = ({type}: {type: string}) => {
                   <div className="flex gap-4">
                     <CustomInput 
                       control = {form.control}
-                      name = "state"
+                      name = "region"
                       label = "Region (county)"
                       placeholder = "Example: West Midlands"
                       type = "text"
@@ -189,14 +191,11 @@ const AuthForm = ({type}: {type: string}) => {
                   <Button type="submit" disabled = {isLoading} className ="form-btn">
                     {isLoading ? (
                       <>
-                        <Loader2 className="size-20 animate-spin"/> &nbsp;
+                        <Loader2 size={20} className="animate-spin"/> &nbsp;
                         Loading...
                       </>
-                    ): (
-                      type === 'sign-in'
-                      ? 'Sign In'
-                      : 'Sign Up'
-                    )}
+                    ): type === 'sign-in'
+                      ? 'Sign In' : 'Sign Up'}
                   </Button>
                 </div>
 
@@ -206,8 +205,8 @@ const AuthForm = ({type}: {type: string}) => {
             <footer className = "flex justify-center gap-1">
               <p className = "text-14 font-normal text-gray-600 mt-5">
                 {type === 'sign-in'
-                ? 'Don\'t have an account?'
-                : 'Already have an account?'}
+                ? "Don't have an account?"
+                : "Already have an account?"}
               </p>
               <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className="form-link mt-5">
                 {type === 'sign-in' ? 'Sign Up' : 'Sign In'}
