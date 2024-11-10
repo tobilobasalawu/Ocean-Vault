@@ -1,8 +1,11 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { PlaidLinkOptions, usePlaidLink } from "react-plaid-link";
+import { PlaidLinkOptions, usePlaidLink, PlaidLinkOnSuccess } from "react-plaid-link";
 import { StyledString } from "next/dist/build/swc";
 import { useRouter } from "next/navigation";
+import { createLinkToken } from "@/lib/actions/user.actions";
+
+
 const PlaidLink = ({user, variant}: PlaidLinkProps) => {
 
   const router = useRouter();
@@ -10,8 +13,8 @@ const PlaidLink = ({user, variant}: PlaidLinkProps) => {
   const [token, setToken] = useState('');
   useEffect(() => {
     const getLinkToken = async () => {
-      //const data = await createLinkToken(user);
-      //setToken(data?.link_token);
+      const data = await createLinkToken(user);
+      setToken(data?.link_token);
     };
     getLinkToken();
   }, []);
