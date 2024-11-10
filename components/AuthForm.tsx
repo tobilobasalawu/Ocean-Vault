@@ -215,7 +215,7 @@ const AuthForm = ({type}: {type: string}) => {
             </footer>
 
         </div>
-      )}
+      {/* )} */}
 
     </section>
   )
