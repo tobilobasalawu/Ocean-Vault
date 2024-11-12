@@ -97,4 +97,44 @@ export const createLinkToken = async (user: User) => {
   }
 }
 
+export const exchnagePublicToken = async ({
+  publicToken,
+  user,
+}: exchangePublicTokenProps) => {
+  try{
+    const response = await plaidClient.itemPublicTokenExchange({
+      public_token: publicToken,
+    });
 
+    const accessToken = response.data.access_token;
+    const itemId = response.data.item_id;
+
+    const accountsResponse = await plaidClient.accountsGet({
+      access_token: accessToken,
+    });
+
+    const accountData = accountsResponse.data.accounts[0];
+
+    const request : ProcessorTokenCreateRequest = {
+      access_token: accessToken,
+      account_id: accountData.account_id,
+      processor: "dwolla" as ProcessorTokenCreateRequestProcessorEnum,
+    };
+
+    const processorTokenResponse = await plaidClient.processorTokenCreate(request);
+    const processorToken = processorTokenResponse.data.processor_token;
+   // const response = await plaidClient.processorStripeBankAccountTokenCreate(request);
+
+   //funding sources URL; 
+   const fundingSourceUrl = await addFundingSource({
+    dwollaCustomerId: user.dwollaCustomerId,
+    processorToken,
+    bankName: accountData.name,
+   });
+
+    //return parseStringify(response.data);
+  } catch (error){
+    console.log('Error', error);
+  }
+
+}
