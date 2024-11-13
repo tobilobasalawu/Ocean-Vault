@@ -46,7 +46,7 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
           height={184} 
           className="absolute h-[184px] w-[350px] top-1"/>
       </Link>
-      {showBalance && ()}
+      {showBalance && <Copy title={account?.sharableId} />}
     </div>
   )
 }
