@@ -5,12 +5,12 @@ import Image from "next/image";
 
 const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => {
   return (
-    <div className="flex flex-col w-full max-w-[500px]">
-      <Link href="/" className="flex relative h-48 w-full">
-        <div className="bank-card-left rounded-l-2xl bg-chase-gradient p-6 w-full shadow-lg">
+    <div className="flex flex-col">
+      <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className="flex relative h-48 w-full">
+        <div className="bank-card_content">
           <div>
             <h1 className="text-16 font-semibold text-white">
-              {userName}
+              {account.name}
             </h1>
             <p className="font-ibm-plex-sans text-12 font-black text-white">
               {formatAmount(account.currentBalance)}
@@ -23,13 +23,13 @@ const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => 
                 {userName}
               </h1>
               <h2 className="text-12 font-semibold text-white">
-                &#9679;&#9679; / &#9679;&#9679; 
+                ●● / ●● 
               </h2>
             </div>
             <p className="text-14 font-semibold text-white tracking-[1.1px]">
-              &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679;
+              ●●●● ●●●● ●●●●
               <span className="text-16">
-                {account.mask}
+                {account?.mask}
               </span>
             </p>
           </article>

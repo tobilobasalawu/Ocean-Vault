@@ -27,6 +27,7 @@ const PlaidLink = ({user, variant}: PlaidLinkProps) => {
   const config: PlaidLinkOptions = {
     token,
     onSuccess,
+    linkCustomizationName: "default",
   }
 
   const {open, ready} = usePlaidLink(config);
@@ -41,7 +42,7 @@ const PlaidLink = ({user, variant}: PlaidLinkProps) => {
         <Button onClick={() => open()} variant="ghost" className="plaidlink-ghost">
           <Image 
             src="/icons/connect-bank.svg"
-            alt="Link Bank Account"
+            alt="link bank account"
             width={24}
             height={24}
           />
@@ -51,7 +52,7 @@ const PlaidLink = ({user, variant}: PlaidLinkProps) => {
         <Button onClick={() => open()} className="plaidlink-default">
            <Image 
             src="/icons/connect-bank.svg"
-            alt="connect bank"
+            alt="link bank account"
             width={24}
             height={24}
           />
