@@ -9,16 +9,12 @@ const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser();
   const accounts = await getAccounts({ userId: loggedIn?.$id });
   const accountsData = accounts?.data;
+  const currentPage = Number(page as string) || 1;
 
   if (!accounts) return;
 
   const appwriteItemId = (id as string) || accountsData[0].appwriteItemId;
   const account = await getAccount({ appwriteItemId });
-
-  console.log({
-    accountsData,
-    account
-  })
 
   return (
     <section className="home">
@@ -27,7 +23,7 @@ const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
           <HeaderBox 
             type="greeting"
             title="Welcome"
-            user={loggedIn?.name || "Guest"}
+            user={loggedIn?.firstName || "Guest"}
             subtext = "Access and manage your account including transactions effectively."
           />
 
@@ -38,7 +34,13 @@ const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
           />
         </header>
 
-        Recent Transactions
+        <RecentTransactions 
+          accounts = {accountsData}
+          transactions = {accounts?.transactions}
+          appwriteItemId = {appwriteItemId}
+          page = {currentPage}
+        />
+
       </div>
 
       <RightSideBar
