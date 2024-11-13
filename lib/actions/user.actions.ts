@@ -4,8 +4,10 @@ import { ID } from 'node-appwrite';
 import { cookies } from 'next/headers';
 import { parseStringify } from '../utils';
 import { Products, CountryCode } from 'plaid';
-import { PlaidApi, Configuration } from 'plaid';
+import { PlaidApi, Configuration, ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum } from 'plaid';
 import { plaidClient } from '@/lib/plaid';
+import { encryptId } from '@/lib/utils';
+import { revalidatePath } from 'next/cache';
 
 export const signIn = async ({email, password} : signInProps) => {
   try {
@@ -132,7 +134,26 @@ export const exchnagePublicToken = async ({
     bankName: accountData.name,
    });
 
-    //return parseStringify(response.data);
+   //if funding source URL is not created, throw an error
+   if (!fundingSourceUrl) throw  Error;
+
+   //create a bank account if funding source exists
+   await createBankAccount({
+    userId: user.$id,
+    bankId: itemId,
+    accountId: accountData.account_id,
+    accessToken,
+    fundingSourceUrl,
+    sharableId: encryptId(accountData.account_id),
+    
+   });
+
+   //Revalidate the path to reflect changes
+   revalidatePath('/');
+
+    return parseStringify({
+      publicTokenExchange: complete,
+    });
   } catch (error){
     console.log('Error', error);
   }
