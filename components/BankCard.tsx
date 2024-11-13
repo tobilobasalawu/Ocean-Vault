@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { formatAmount } from "@/lib/utils";
 import Image from "next/image";
+import Copy from "@/components/Copy";
 
 const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => {
   return (
