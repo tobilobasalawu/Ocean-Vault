@@ -3,9 +3,22 @@ import RightSideBar from "@/components/RightSideBar";
 import TotalBalanceBox from "@/components/TotalBalanceBox";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import React  from "react";
+import { getAccounts, getAccount } from "@/lib/actions/bank.actions";
 
-const Home = async () => {
+const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser();
+  const accounts = await getAccounts({ userId: loggedIn?.$id });
+  const accountsData = accounts?.data;
+
+  if (!accounts) return;
+
+  const appwriteItemId = (id as string) || accountsData[0].appwriteItemId;
+  const account = await getAccount({ appwriteItemId });
+
+  console.log({
+    accountsData,
+    account
+  })
 
   return (
     <section className="home">
@@ -19,9 +32,9 @@ const Home = async () => {
           />
 
           <TotalBalanceBox 
-            accounts = {[]}
-            totalBanks = {1}
-            totalCurrentBalance = {2100.05}
+            accounts = {accountsData}
+            totalBanks = {accountsData?.totalBanks}
+            totalCurrentBalance = {accountsData?.totalCurrentBalance}
           />
         </header>
 
@@ -30,8 +43,8 @@ const Home = async () => {
 
       <RightSideBar
         user = {loggedIn}
-        transactions = {[]}
-        banks = {[{currentBalance: 3578.90}, {currentBalance: 2080.90}]}
+        transactions = {accounts?.transactions}
+        banks = {[accountsData?.slice(0, 2)]}
       />
 
     </section>
