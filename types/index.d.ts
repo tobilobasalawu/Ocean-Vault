@@ -8,13 +8,14 @@ declare type SearchParamProps = {
 // ========================================
 
 declare type SignUpParams = {
-  firstName?: string;
-  lastName?: string;
-  address1?: string;
-  city?: string;
-  state?: string;
-  postalCode?: string;
-  dateOfBirth?: string;
+  firstName: string;
+  lastName: string;
+  address1: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  dateOfBirth: string;
+  ssn: string;
   email: string;
   password: string;
 };
@@ -138,20 +139,20 @@ declare type NewDwollaCustomerParams = {
 declare interface CreditCardProps {
   account: Account;
   userName: string;
-  showBalance?: boolean;
+  showBalance: boolean;
 }
 
 declare interface BankInfoProps {
   account: Account;
-  appwriteItemId?: string;
+  appwriteItemId: string;
   type: "full" | "card";
 }
 
 declare interface HeaderBoxProps {
-  type?: "title" | "greeting";
+  type: "title" | "greeting";
   title: string;
   subtext: string;
-  user?: string;
+  user: string;
 }
 
 declare interface MobileNavProps {
@@ -163,7 +164,7 @@ declare interface PageHeaderProps {
   bottomTitle: string;
   topDescription: string;
   bottomDescription: string;
-  connectBank?: boolean;
+  connectBank: boolean;
 }
 
 declare interface PaginationProps {
@@ -173,8 +174,8 @@ declare interface PaginationProps {
 
 declare interface PlaidLinkProps {
   user: User;
-  variant?: "primary" | "ghost";
-  dwollaCustomerId?: string;
+  variant: "primary" | "ghost";
+  dwollaCustomerId: string;
 }
 
 // declare type User = sdk.Models.Document & {
@@ -192,13 +193,13 @@ declare interface AuthFormProps {
 
 declare interface BankDropdownProps {
   accounts: Account[];
-  setValue?: UseFormSetValue<any>;
-  otherStyles?: string;
+  setValue: UseFormSetValue<any>;
+  otherStyles: string;
 }
 
 declare interface BankTabItemProps {
   account: Account;
-  appwriteItemId?: string;
+  appwriteItemId: string;
 }
 
 declare interface TotlaBalanceBoxProps {
@@ -209,7 +210,7 @@ declare interface TotlaBalanceBoxProps {
 
 declare interface FooterProps {
   user: User;
-  type?: "desktop" | "mobile";
+  type: "desktop" | "mobile";
 }
 
 declare interface RightSidebarProps {
