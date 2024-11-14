@@ -8,14 +8,14 @@ import RecentTransactions from "@/components/RecentTransactions";
 
 const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser();
-  const accounts = await getAccounts({ userId: loggedIn?.$id });
-  const accountsData = accounts?.data;
+  
+  if (!loggedIn) {
+    return null;
+  }
+
+  const accounts = await getAccounts({ userId: loggedIn.$id });
+  const accountsData = accounts?.data || [];
   const currentPage = Number(page as string) || 1;
-
-  if (!accounts) return;
-
-  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
-  const account = await getAccount({ appwriteItemId });
 
   return (
     <section className="home">
@@ -25,31 +25,35 @@ const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
             type="greeting"
             title="Welcome"
             user={loggedIn?.firstName || "Guest"}
-            subtext = "Access and manage your account including transactions effectively."
+            subtext="Access and manage your account including transactions effectively."
           />
 
           <TotalBalanceBox 
-            accounts = {accountsData}
-            totalBanks = {accountsData?.totalBanks}
-            totalCurrentBalance = {accountsData?.totalCurrentBalance}
+            accounts={accountsData}
+            totalBanks={accountsData.length}
+            totalCurrentBalance={0}
           />
         </header>
 
-        <RecentTransactions 
-          accounts = {accountsData}
-          transactions = {accounts?.transactions}
-          appwriteItemId = {appwriteItemId}
-          page = {currentPage}
-        />
-
+        {accountsData.length > 0 ? (
+          <RecentTransactions 
+            accounts={accountsData}
+            transactions={accounts?.transactions || []}
+            appwriteItemId={id || accountsData[0]?.appwriteItemId}
+            page={currentPage}
+          />
+        ) : (
+          <div className="no-transactions">
+            No bank accounts linked yet. Please add a bank account to see transactions.
+          </div>
+        )}
       </div>
 
       <RightSideBar
-        user = {loggedIn}
-        transactions = {accounts?.transactions}
-        banks = {[accountsData?.slice(0, 2)]}
+        user={loggedIn}
+        transactions={[]}
+        banks={[]}
       />
-
     </section>
   )
 }

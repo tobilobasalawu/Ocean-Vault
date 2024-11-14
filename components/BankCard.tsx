@@ -7,7 +7,7 @@ import Copy from "@/components/Copy";
 const BankCard = ({account, userName, showBalance = true} : CreditCardProps) => {
   return (
     <div className="flex flex-col">
-      <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className="flex relative h-48 w-full">
+      <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className="bank-card">
         <div className="bank-card_content">
           <div>
             <h1 className="text-16 font-semibold text-white">
