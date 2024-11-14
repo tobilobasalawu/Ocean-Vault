@@ -3,10 +3,13 @@
 ## Overview
 Ocean Vault is a full-stack banking application that provides users with secure banking services. The application is built using modern web technologies and aims to provide a seamless and intuitive user experience.
 
+## Important Notice
+Currently, Appwrite is experiencing technical difficulties, which may affect the sign-in/sign-up functionality of the application. If you encounter issues with authentication, please try again later.
+
 ## Features
 - User authentication (sign-in/sign-up)
 - Account management (create, view, and manage bank accounts)
-- Transactions (deposit, withdraw, and transfer funds)
+- Transactions (transfer funds)
 - Real-time balance updates
 - Transaction history
 - Secure data storage and encryption
@@ -14,14 +17,13 @@ Ocean Vault is a full-stack banking application that provides users with secure 
 ## Technologies Used
 - **Front-end**: React.js, Tailwind CSS
 - **Back-end**: Node.js, Express.js
-- **Database**: MongoDB
+- **Database**: Appwrite
 - **Authentication**: Appwrite
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js (version 14 or higher)
-- MongoDB (local or cloud-based)
 - Appwrite (for authentication)
 
 ### Installation
@@ -71,10 +73,8 @@ npm start
 ```
 
 ## Deployment
-To deploy the application, you can use a hosting service like Heroku, AWS, or DigitalOcean. Make sure to configure the environment variables on the hosting platform according to the steps above.
+To deploy the application, you can use a hosting service like Vercel. Make sure to configure the environment variables on the hosting platform according to the steps above.
 
-## Known Issues
-Currently, Appwrite is experiencing technical difficulties, which may affect the sign-in/sign-up functionality of the application. If you encounter issues with authentication, please try again later.
 
 ## Contributing
 We welcome contributions to the Ocean Vault project. If you find any bugs or have suggestions for improvements, please feel free to open an issue or submit a pull request.
