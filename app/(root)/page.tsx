@@ -4,6 +4,7 @@ import TotalBalanceBox from "@/components/TotalBalanceBox";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import React  from "react";
 import { getAccounts, getAccount } from "@/lib/actions/bank.actions";
+import RecentTransactions from "@/components/RecentTransactions";
 
 const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser();
@@ -13,7 +14,7 @@ const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
 
   if (!accounts) return;
 
-  const appwriteItemId = (id as string) || accountsData[0].appwriteItemId;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
   const account = await getAccount({ appwriteItemId });
 
   return (

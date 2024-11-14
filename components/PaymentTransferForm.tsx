@@ -8,11 +8,11 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { createTransfer } from "@/lib/actions/dwolla.actions";
-import { createTransaction } from "@/lib/actions/transaction.actions";
+import { createTransaction } from "@/lib/actions/transactions.action";
 import { getBank, getBankByAccountId } from "@/lib/actions/user.actions";
 import { decryptId } from "@/lib/utils";
 
-import { BankDropdown } from "./bank/BankDropdown";
+import { BankDropdown } from "@/components/BankDropdown";
 import { Button } from "./ui/button";
 import {
   Form,
