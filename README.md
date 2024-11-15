@@ -29,7 +29,7 @@ Currently, Appwrite is experiencing technical difficulties, which may affect the
 ### Installation
 1. Clone the repository:
 ```
-git clone https://github.com/your-username/ocean-vault.git
+git clone https://github.com/tobilobasalawu/ocean-vault.git
 ```
 2. Install dependencies:
 ```
