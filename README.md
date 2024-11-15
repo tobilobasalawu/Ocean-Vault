@@ -8,7 +8,7 @@ Currently, Appwrite is experiencing technical difficulties, which may affect the
 
 ## Features
 - User authentication (sign-in/sign-up)
-- Account management (create, view, and manage bank accounts)
+- Account management (add, view, and manage bank accounts)
 - Transactions (transfer funds)
 - Real-time balance updates
 - Transaction history
