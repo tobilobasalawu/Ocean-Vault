@@ -1,5 +1,7 @@
 # Ocean Vault - Full Stack Banking Application
 
+ps: Cancelled my subcription on Appwrite (so.. some features might not work😂)
+
 ## Overview
 Ocean Vault is a full-stack banking application that provides users with secure banking services. The application is built using modern web technologies and aims to provide a seamless and intuitive user experience.
 
